@@ -6,7 +6,119 @@
     android:layout_height="match_parent"
     android:background="#000000">
 
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="207dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Language Selector -->
+    <Button
+        android:id="@+id/languageButton"
+        android:layout_width="118dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="28dp"
+        android:background="@null"
+        android:text="🌐 English"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Movie poster -->
+    <ImageView
+        android:id="@+id/posterImageView"
+        android:layout_width="280dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="Movie Poster"
+        android:src="@drawable/poster"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoImageView" />
+
+    <!-- Welcome Text -->
+    <TextView
+        android:id="@+id/welcomeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="360dp"
+        android:text="MBooking Hello!"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoImageView" />
+
+    <!-- Terms and Policy -->
+
+    <Button
+        android:id="@+id/signInButton"
+        android:layout_width="157dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="52dp"
+        android:backgroundTint="#FFB400"
+        android:text="Sign In"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTextView" />
+
+    <TextView
+        android:id="@+id/termTextView"
+        android:layout_width="316dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="By signing in, you agree to our Terms of Service and Privacy Policy"
+        android:textColor="#AAAAAA"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signInButton"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Username"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CCCCCC"
+        android:backgroundTint="#FFFFFF"
+        android:visibility="gone"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signInButton" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Password"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#CCCCCC"
+        android:backgroundTint="#FFFFFF"
+        android:visibility="gone"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/usernameEditText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
