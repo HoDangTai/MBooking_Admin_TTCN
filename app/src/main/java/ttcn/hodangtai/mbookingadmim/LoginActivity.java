@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity{
         // Setup UI
         Button languageButton = findViewById(R.id.languageButton);
         Button signInButton = findViewById(R.id.signInButton);
-        EditText usernameEditText = findViewById(R.id.usernameEditText);
+        EditText usernameEditText = findViewById(R.id.username);
         EditText passwordEditText = findViewById(R.id.passwordEditText);
         TextView welcomeTextView = findViewById(R.id.welcomeTextView);
 
