@@ -50,7 +50,9 @@ public class LoginActivity extends AppCompatActivity{
         Button languageButton = findViewById(R.id.languageButton);
         Button signInButton = findViewById(R.id.signInButton);
         EditText usernameEditText = findViewById(R.id.username);
-        EditText passwordEditText = findViewById(R.id.passwordEditText);
+
+        EditText passwordEditText = findViewById(R.id.password);
+
         TextView welcomeTextView = findViewById(R.id.welcomeTextView);
 
         // Observe language changes
