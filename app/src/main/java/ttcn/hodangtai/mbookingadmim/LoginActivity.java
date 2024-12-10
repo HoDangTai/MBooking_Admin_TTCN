@@ -16,15 +16,32 @@ import androidx.lifecycle.ViewModelProvider;
 import java.util.Map;
 
 import ttcn.hodangtai.mbookingadmim.viewmodels.LoginViewModel;
+
 import ttcn.hodangtai.mbookingadmim.viewmodels.MovieViewModel;
+
+import ttcn.hodangtai.mbookingadmim.viewmodels.MainViewModel;
+import ttcn.hodangtai.mbookingadmim.Session.SessionManager;
+
 
 
 public class LoginActivity extends AppCompatActivity{
     private LoginViewModel viewModel;
+    private SessionManager sessionManager;
+    private void switchToMainView(){
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_login);
+        sessionManager = new SessionManager(this);
+
+        // Kiểm tra xem người dùng đã đăng nhập hay chưa
+        // Nếu đã đăng nhập thì chuyển qua mainactivity
+        if(sessionManager.isLoggedIn()){
+            switchToMainView();
+        }
 
         // Khởi tạo ViewModel
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
@@ -52,18 +69,27 @@ public class LoginActivity extends AppCompatActivity{
 
         // Handle button actions
         signInButton.setOnClickListener(v -> {
+
             // Hiển thị EditText khi bấm vào nút Sign In
             usernameEditText.setVisibility(View.VISIBLE);
             passwordEditText.setVisibility(View.VISIBLE);
-            String username = usernameEditText.getText().toString().trim();
-            String password = passwordEditText.getText().toString().trim();
-            // Kiểm tra thông tin đăng nhập
-            if (username.equals("admin") && password.equals("123456")) {
-                // Chuyển sang MenuActivity
-                Intent intent = new Intent(LoginActivity.this, DashBoardActivity.class);
-                startActivity(intent);
+
+            if (usernameEditText.getVisibility() != View.VISIBLE || passwordEditText.getVisibility() != View.VISIBLE) {
+                // Nếu chưa hiển thị, đặt EditText thành VISIBLE
+                usernameEditText.setVisibility(View.VISIBLE);
+                passwordEditText.setVisibility(View.VISIBLE);
             } else {
-                Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                // Nếu đã hiển thị, lấy dữ liệu từ EditText
+                String username = usernameEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+                if (username.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Vui lòng nhập tài khoản và mật khẩu!", Toast.LENGTH_SHORT).show();
+                } else {
+                    sessionManager.createLoginSession(username, "");
+                    // Gọi phương thức chuyển sang MainActivity
+                    switchToMainView();
+                }
+
             }
         });
 
