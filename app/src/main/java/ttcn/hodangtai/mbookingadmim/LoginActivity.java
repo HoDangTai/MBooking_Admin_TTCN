@@ -14,25 +14,27 @@ import androidx.lifecycle.ViewModelProvider;
 
 import ttcn.hodangtai.mbookingadmim.viewmodels.LoginViewModel;
 import ttcn.hodangtai.mbookingadmim.viewmodels.MainViewModel;
+import ttcn.hodangtai.mbookingadmim.Session.SessionManager;
 
 
 public class LoginActivity extends AppCompatActivity{
     private LoginViewModel viewModel;
-
-    private void switchToMainView(String username){
+    private SessionManager sessionManager;
+    private void switchToMainView(){
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
-        // Truyền thêm dữ liệu nếu cần (ví dụ: username)
-        intent.putExtra("USERNAME", username);
-
         startActivity(intent);
-
-        finish();
     }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_login);
+        sessionManager = new SessionManager(this);
+
+        // Kiểm tra xem người dùng đã đăng nhập hay chưa
+        // Nếu đã đăng nhập thì chuyển qua mainactivity
+        if(sessionManager.isLoggedIn()){
+            switchToMainView();
+        }
 
         // Khởi tạo ViewModel
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
@@ -71,8 +73,9 @@ public class LoginActivity extends AppCompatActivity{
                 if (username.isEmpty() || password.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Vui lòng nhập tài khoản và mật khẩu!", Toast.LENGTH_SHORT).show();
                 } else {
+                    sessionManager.createLoginSession(username, "");
                     // Gọi phương thức chuyển sang MainActivity
-                    switchToMainView(username);
+                    switchToMainView();
                 }
             }
         });
