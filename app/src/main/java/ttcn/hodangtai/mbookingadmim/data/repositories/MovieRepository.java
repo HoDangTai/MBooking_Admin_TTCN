@@ -1,42 +1,37 @@
 package ttcn.hodangtai.mbookingadmim.data.repositories;
 import androidx.lifecycle.MutableLiveData;
-import ttcn.hodangtai.mbookingadmim.data.ApiService;
-import ttcn.hodangtai.mbookingadmim.data.entities.Movie;
+import ttcn.hodangtai.mbookingadmim.data.api.ApiService;
+import ttcn.hodangtai.mbookingadmim.data.api.RetrofitClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.util.Map;
 
-import java.util.List;
 public class MovieRepository {
-    private static final String BASE_URL = "https://example.com";
-    private ApiService apiService;
+    private final ApiService apiService;
 
     public MovieRepository() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        apiService = retrofit.create(ApiService.class);
+        apiService = RetrofitClient.getInstance().create(ApiService.class);
     }
 
-    public MutableLiveData<List<Movie>> getMovies() {
-        MutableLiveData<List<Movie>> moviesData = new MutableLiveData<>();
-        apiService.getMovies().enqueue(new Callback<List<Movie>>() {
+    public MutableLiveData<Map<String, Object>> searchMovies(String name, int page) {
+        MutableLiveData<Map<String, Object>> movieData = new MutableLiveData<>();
+        apiService.searchMovies(name, page).enqueue(new Callback<Map<String, Object>>() {
             @Override
-            public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
-                if (response.isSuccessful()) {
-                    moviesData.setValue(response.body());
+            public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    movieData.setValue(response.body());
+                } else {
+                    movieData.setValue(null);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Movie>> call, Throwable t) {
-                moviesData.setValue(null);
+            public void onFailure(Call<Map<String, Object>> call, Throwable t) {
+                movieData.setValue(null);
             }
         });
-        return moviesData;
+        return movieData;
     }
 }

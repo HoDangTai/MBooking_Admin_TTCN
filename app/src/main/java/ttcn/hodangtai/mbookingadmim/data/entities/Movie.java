@@ -1,23 +1,56 @@
 package ttcn.hodangtai.mbookingadmim.data.entities;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 public class Movie {
-    public class Movie {
-        private int id;
-        private String title;
-        private String status;
+    private String title;
 
-        // Getters
-        public int getId() {
-            return id;
-        }
+    @SerializedName("release_date")
+    private String releaseDate;
 
-        public String getTitle() {
-            return title;
-        }
+    @SerializedName("overview")
+    private String overview;
 
-        public String getStatus() {
-            return status;
-        }
+    @SerializedName("poster_path")
+    private String posterPath;
+
+    @SerializedName("vote_average")
+    private double voteAverage;
+
+    @SerializedName("vote_count")
+    private int voteCount;
+
+    @SerializedName("genre_ids")
+    private List<Integer> genreIds;
+
+    // Getters
+    public String getTitle() {
+        return title;
     }
 
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public double getVoteAverage() {
+        return voteAverage;
+    }
+
+    public int getVoteCount() {
+        return voteCount;
+    }
+
+    public List<Integer> getGenreIds() {
+        return genreIds;
+    }
 }
