@@ -8,7 +8,7 @@ public class RetrofitClient {
     public static Retrofit getInstance() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://tmdb-movies-and-tv-shows-api-by-apirobots.p.rapidapi.com")
+                    .baseUrl("https://api.themoviedb.org")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

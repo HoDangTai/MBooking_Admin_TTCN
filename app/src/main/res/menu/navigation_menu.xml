@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/dashboard"
+        android:icon="@drawable/dashboard"
+        android:title="Dashboard" />
+
+    <item
+        android:id="@+id/movies"
+        android:icon="@drawable/movie"
+        android:title="Quản lý Phim" />
+
+    <item
+        android:id="@+id/theaters"
+        android:icon="@drawable/theater"
+        android:title="Quản lý Rạp" />
+
+    <item
+        android:id="@+id/schedule"
+        android:icon="@drawable/schedule"
+        android:title="Quản lý Lịch Chiếu" />
+</menu>

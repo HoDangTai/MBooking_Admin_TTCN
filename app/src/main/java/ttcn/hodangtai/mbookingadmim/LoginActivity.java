@@ -10,16 +10,10 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
-import java.util.Map;
 
 import ttcn.hodangtai.mbookingadmim.viewmodels.LoginViewModel;
 
-import ttcn.hodangtai.mbookingadmim.viewmodels.MovieViewModel;
-
-import ttcn.hodangtai.mbookingadmim.viewmodels.MainViewModel;
 import ttcn.hodangtai.mbookingadmim.Session.SessionManager;
 
 

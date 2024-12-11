@@ -3,17 +3,20 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Query;
+import ttcn.hodangtai.mbookingadmim.data.entities.Movie;
 
 import java.util.Map;
 
 public interface ApiService {
     @Headers({
-            "x-rapidapi-host: tmdb-movies-and-tv-shows-api-by-apirobots.p.rapidapi.com",
-            "x-rapidapi-key: 3e0c4bdb77msh32f4facb5cc5487p1bce8ejsn6515536f79c3"
+            "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNDQyODFkMTA2ZTMyMzEwMTBkYjRlNzc3ZWQ5OTdlOSIsIm5iZiI6MTczMzI3NjI3NS41NDIsInN1YiI6IjY3NGZiMjczNDNhNmFiZDA2YjZlYTQ4NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.U7l7kOXrBCbiMRKR7QOuyHBF81JqpdGA-EqCZl70EFU",
+            "xaccept: application/json"
     })
     @GET("/v1/tmdb")
     Call<Map<String, Object>> searchMovies(
             @Query("name") String name,
             @Query("page") int page
     );
+    Call<Movie> getUpcomingMovies();
+
 }
